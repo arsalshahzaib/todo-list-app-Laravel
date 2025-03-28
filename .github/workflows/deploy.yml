@@ -3,7 +3,7 @@ name: Laravel CI/CD
 on:
   push:
     branches:
-      - main
+      - main # here will name the branch whose changes will trigger the workflow
 
 jobs:
   build:
