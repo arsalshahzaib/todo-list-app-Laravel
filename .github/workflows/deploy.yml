@@ -10,31 +10,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout Repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: 🛠️ Set up PHP
+      - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
           extensions: mbstring, bcmath, gd, intl, pdo, pdo_mysql, zip
           tools: composer, npm
 
-      - name: 🔍 Install Dependencies
+      - name: Install Dependencies
         run: |
           composer install --no-dev --prefer-dist --optimize-autoloader
           npm install && npm run build
 
-      - name: 🔑 Set up Environment Variables
+      - name: Set up Environment Variables
         run: cp .env.example .env
 
-      - name: 🛠️ Generate App Key
+      - name: Generate App Key
         run: php artisan key:generate
 
-      - name: 🛠️ Run Migrations
+      - name: Run Migrations
         run: php artisan migrate --force
 
-      - name: 🏗️ Run Tests
+      - name: Run Tests
         run: php artisan test
 
   deploy:
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🚀 Deploy to Server
+      - name: Deploy to Server
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
