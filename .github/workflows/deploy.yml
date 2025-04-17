@@ -3,7 +3,7 @@ name: Laravel CI/CD
 on:
   push:
     branches:
-      - main # here will name the branch whose changes will trigger the workflow
+      - main # the branch to deploy from
 
 jobs:
   build:
@@ -58,4 +58,4 @@ jobs:
             php artisan route:clear
             php artisan view:clear
             php artisan optimize
-            sudo systemctl restart nginx php8.4-fpm
+            sudo systemctl restart nginx php8.3-fpm
